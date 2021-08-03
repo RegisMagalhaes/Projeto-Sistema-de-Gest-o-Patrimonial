@@ -1,13 +1,9 @@
-# Projeto_Inicial-3T
-Projeto da primeira semana 3º de Desenvolvimento de Sistemas
+<h1 align="center">Patrimônio Escolar</h1>
 
-Criar um Sistema para gerenciar o patrimônio de uma escola.(backend, web e/ou mobile)
+<h2>Descrição</h2>
+<p align="center">O objetivo do projeto é desenvolver um sistema web para gerenciar o patrimônio de uma escola</p>
 
-Fazer um fork no repositório do github:
-
-https://github.com/senai-desenvolvimento/projeto-individual-3t
-
-## Cadastro de Sala
+### *Cadastro de Sala*
   
   Criar um cadastro da empresa com os seguintes campos:
   - Andar;
@@ -15,7 +11,7 @@ https://github.com/senai-desenvolvimento/projeto-individual-3t
   - Metragem da sala
   - Todos os campos são de preenchimento obrigatório.
 
-## Cadastro de Equipamento
+### *Cadastro de Equipamento*
   
   Criar um cadastro de equipamentos com os seguintes campos:
   - Marca;
@@ -26,29 +22,26 @@ https://github.com/senai-desenvolvimento/projeto-individual-3t
   - Ativo/Inativo
   - Todos os campos são de preenchimento obrigatório.
   
-## Funcionalidades
+### *Funcionalidades*
   
   - Sala: CRUD;
   - Equipamento: CRUD;
   - Controle de entrada e saída de equipamento(interno, externo).
-   
-## Requisitos
 
-  - Modelagem de dados;
-  - É necessário o usuário estar autenticado no sistema
-  - Implementar Swagger
-  - O retorno deverá ser em formato JSON;
-  - Requisições GET, POST, PUT ou DELETE, conforme a melhor prática;
-  - A persistência dos dados pode ser realizada da maneira que preferir;
-  - Criar um  README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação.
+### 🛠 *Tecnologias*
 
-## Ganha mais pontos
+As seguintes ferramentas foram usadas na construção do projeto:
 
-  - Desenvolver utilizando TDD;
-  - Criar página de relatório de entrada e saída;
-  - Dashboard com informações de quantidade de salas, quantidade de equipamentos e gráfico de entrada e saída diário
+- [SSMS](https://docs.microsoft.com/pt-br/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [VsCode](https://code.visualstudio.com/)
 
-## Submissão
-  
-  Crie um fork do teste para acompanharmos o seu desenvolvimento através dos seus commits.
 
+### Colaboradores
+<p>🏆 Leonardo Rodrigues: https://github.com/BearSharkN</p>
+<p>🏆 Yuri Costa : https://github.com/Yuri-Costa</p>
+<p>🏆 Maiara Evangelista : https://github.com/MaiaraEvangelista</p>
+<p>🏆 Regis Leandro: https://github.com/RegisMagalhaes</p>
