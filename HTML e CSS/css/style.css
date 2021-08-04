@@ -69,7 +69,9 @@
   opacity: 0.7;
 }
 
-/**/
+/*FIM DAS PROPRIEDADES DA PÁGINA DE LOGIN*/
+
+/*PROPRIEDADES DO MENU LATERAL (CUIDADO AO MEXER)*/
 
 .sidenav {
   height: 100%;
@@ -139,6 +141,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+/*PROPRIEDADES DO CONTEÚDO DA PÁGINA SALAS/EQUIPAMENTOS*/
 
 .body-main {
   min-width: 300px;
@@ -271,6 +275,8 @@ summary p {
   opacity: 0.5;
 }
 
+
+/*botão dentro do accordion*/
 .btn-delete{
   width: 140px;
   height: 48px;
