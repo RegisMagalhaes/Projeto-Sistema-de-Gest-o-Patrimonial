@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Salas</title>
+    <title>Adicionar sala</title>
     <link rel="stylesheet" href="/HTML e CSS/css/style.css" />
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -25,7 +25,7 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class='bx bxs-buildings'></i> Salas</button>
                 <div class="dropdown-content">
-                    <a href="#">Nova Sala</a>
+                    <a href="cadsala.html">Nova Sala</a>
                     <a href="salas.html">Todas as Salas</a>
                 </div>
             </div>
@@ -36,9 +36,33 @@
     </aside>
     <main>
         <div class="teste">
-            <h1>Página Base</h1>
+            <h1>Cadastrar sala</h1>
+            <p><a href="salas.html">Retornar para todas as salas</a></p>
         </div>     
-            
+       
+        <section class="main-form">
+            <form action="#" method="post">
+                <fieldset>
+                    <div class="container-form">
+                        <label for="tituloSala">Nome da Sala:</label>
+                        <input type="text" name="tituloSala" id="tituloSala" required>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="container-form">
+                        <label for="andarSala">Andar:</label>
+                        <input type="number" name="andarSala" id="andarSala" required>
+                    </div>
+
+                    <div class="container-form">
+                        <label for="tamanhoSala">Tamanho:</label>
+                        <input type="number" name="tamanhoSala" id="tamanhoSala" required>
+                    </div>
+                </fieldset>
+                <input type="submit" value="Cadastrar" class="btn-login" />
+            </form>
+        </section>
+
     </main>
 </body>
 
