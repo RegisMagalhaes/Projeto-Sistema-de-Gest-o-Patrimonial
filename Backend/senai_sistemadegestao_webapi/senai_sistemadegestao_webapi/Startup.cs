@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,29 @@ namespace senai_sistemadegestao_webapi
                     //Ignora valores nulos ao fazer junções nas consultas
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
+            services
+            .AddAuthentication(Options =>
+             {
+                 Options.DefaultAuthenticateScheme = "JwtBearer";
+                 Options.DefaultChallengeScheme = "JwtBearer";
+             })
+
+              .AddJwtBearer("JwtBearer", options =>
+              {
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidateAudience = true,
+                      ValidateLifetime = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("-chave-autenticacao")),
+                      ClockSkew = TimeSpan.FromMinutes(15),
+                      ValidIssuer = "sistemadegestao.webAPI",
+                      ValidAudience = "sistemadegestao.webAPI"
+                  };
+
+              });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

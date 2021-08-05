@@ -45,7 +45,5 @@ namespace senai_sistemadegestao_webapi.Interfaces
         /// </summary>
         /// <param name="id">id do equipamento que será deletado</param>
         void Deletar(int id);
-
-
     }
 }
