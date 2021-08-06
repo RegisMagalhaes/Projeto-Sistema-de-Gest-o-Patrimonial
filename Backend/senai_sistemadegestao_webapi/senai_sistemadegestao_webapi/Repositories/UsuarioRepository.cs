@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace senai_sistemadegestao_webapi.Repositories
 {
-    public class UsuarioRepository : IUsuarioRepository
+   public class UsuarioRepository : IUsuarioRepository
     {
         PatrimonioContext ctx = new PatrimonioContext();
 
@@ -57,11 +57,11 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <returns>O usuário procurado com suas informações</returns>
         public Usuario BuscarPorId(int id)
         {
-            return ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
+            return ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == id); // havia dado erro aqui em IdUsuario
         }
 
         /// <summary>
-        /// Fa zo cadastro de um novo usuário
+        /// Faz o cadastro de um novo usuário
         /// </summary>
         /// <param name="novoUsuario">Nomenclatura de cadastro</param>
         public void Cadastrar(Usuario novoUsuario)

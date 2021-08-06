@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace senai_sistemadegestao_webapi
@@ -28,14 +31,25 @@ namespace senai_sistemadegestao_webapi
                     //Ignora valores nulos ao fazer junções nas consultas
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
-            services
-            .AddAuthentication(Options =>
-             {
-                 Options.DefaultAuthenticateScheme = "JwtBearer";
-                 Options.DefaultChallengeScheme = "JwtBearer";
-             })
+                services
+                .AddAuthentication(Options =>
+                 {
+                     Options.DefaultAuthenticateScheme = "JwtBearer";
+                     Options.DefaultChallengeScheme = "JwtBearer";
+                 });
 
-              .AddJwtBearer("JwtBearer", options =>
+                //Adiciona o serviço do swagger
+                //https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-5.0
+                services.AddSwaggerGen(c => {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Patrimonios.WebAPI", Version = "v1" });
+                    // Set the comments path for the Swagger JSON and UI.
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
+                });
+
+
+             /* .AddJwtBearer("JwtBearer", options =>
               {
                   options.TokenValidationParameters = new TokenValidationParameters
                   {
@@ -48,7 +62,7 @@ namespace senai_sistemadegestao_webapi
                       ValidAudience = "sistemadegestao.webAPI"
                   };
 
-              });
+              });*/
 
 
         }
@@ -60,6 +74,18 @@ namespace senai_sistemadegestao_webapi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Gestão de Patrimônios");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             app.UseRouting();
 
