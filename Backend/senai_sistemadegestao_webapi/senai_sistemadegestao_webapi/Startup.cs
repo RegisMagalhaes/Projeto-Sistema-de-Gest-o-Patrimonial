@@ -31,16 +31,32 @@ namespace senai_sistemadegestao_webapi
                     //Ignora valores nulos ao fazer junções nas consultas
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
+
                 services
                 .AddAuthentication(Options =>
-                 {
+                {
                      Options.DefaultAuthenticateScheme = "JwtBearer";
                      Options.DefaultChallengeScheme = "JwtBearer";
+                })
+
+                 .AddJwtBearer("JwtBearer", options =>
+                 {
+                     options.TokenValidationParameters = new TokenValidationParameters
+                     {
+                         ValidateIssuer = true,
+                         ValidateAudience = true,
+                         ValidateLifetime = true,
+                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("sistemadegestao-chave-autenticacao")),
+                         ClockSkew = TimeSpan.FromMinutes(15),
+                         ValidIssuer = "sistemadegestao.webAPI",
+                         ValidAudience = "sistemadegestao.webAPI"
+                     };
+
                  });
 
-                //Adiciona o serviço do swagger
-                //https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-5.0
-                services.AddSwaggerGen(c => {
+            //Adiciona o serviço do swagger
+            //https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-5.0
+            services.AddSwaggerGen(c => {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Patrimonios.WebAPI", Version = "v1" });
                     // Set the comments path for the Swagger JSON and UI.
                     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -49,20 +65,7 @@ namespace senai_sistemadegestao_webapi
                 });
 
 
-             /* .AddJwtBearer("JwtBearer", options =>
-              {
-                  options.TokenValidationParameters = new TokenValidationParameters
-                  {
-                      ValidateIssuer = true,
-                      ValidateAudience = true,
-                      ValidateLifetime = true,
-                      IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("-chave-autenticacao")),
-                      ClockSkew = TimeSpan.FromMinutes(15),
-                      ValidIssuer = "sistemadegestao.webAPI",
-                      ValidAudience = "sistemadegestao.webAPI"
-                  };
-
-              });*/
+             
 
 
         }
@@ -85,6 +88,8 @@ namespace senai_sistemadegestao_webapi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Gestão de Patrimônios");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseAuthentication();
 
 
             app.UseRouting();

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace senai_sistemadegestao_webapi.Repositories
 {
+    //Instância da interface para ter referência aos métodos
     public class SalaRepository : ISalaRepository
     {
+        //Gera o context para uso nos métodos
         PatrimonioContext ctx = new PatrimonioContext();
 
         /// <summary>
@@ -21,6 +23,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         {
             Sala salaBuscada = ctx.Salas.Find(id);
 
+            //Sistema de atualização das entidades
             if (salaAtualizada.Metragem != null)
             {
                 salaBuscada.Metragem = salaAtualizada.Metragem;
@@ -44,6 +47,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <returns>Sala buscada com suas informações</returns>
         public Sala BuscarPorId(int id)
         {
+            //Faz a busca pelo identificador
             return ctx.Salas.FirstOrDefault(s => s.IdSala == id);
         }
 
@@ -53,8 +57,10 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <param name="novaSala">Nomenclatura de cadastro</param>
         public void Cadastrar(Sala novaSala)
         {
+            //Faz a inserção de dados, adiciona
             ctx.Salas.Add(novaSala);
 
+            //Salva as alterações
             ctx.SaveChanges();
         }
 
@@ -64,8 +70,10 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <param name="id">Identifcador</param>
         public void Deletar(int id)
         {
+            //Faz a exclusão do objeto
             ctx.Salas.Remove(BuscarPorId(id));
 
+            //Salva as alterações
             ctx.SaveChanges();
         }
 
@@ -75,6 +83,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <returns>O retorno de uma lista com as salas</returns>
         public List<Sala> ListarTodos()
         {
+            //Faz a listagem 
             return ctx.Salas.ToList();
         }
     }

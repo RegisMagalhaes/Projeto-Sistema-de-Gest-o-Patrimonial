@@ -76,6 +76,13 @@ namespace senai_sistemadegestao_webapi.Contexts
                     .IsUnicode(false)
                     .HasColumnName("Status_");
 
+                entity.Property(e => e.NumeroPatrimonio)
+                 .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("NumeroPatrimonio")
+                    .IsFixedLength(true);
+
                 entity.Property(e => e.Tipo)
                     .IsRequired()
                     .HasMaxLength(200)

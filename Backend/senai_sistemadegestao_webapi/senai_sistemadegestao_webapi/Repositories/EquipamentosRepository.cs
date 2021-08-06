@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace senai_sistemadegestao_webapi.Repositories
 {
+    //Instância da interface para ter referência aos métodos
     public class EquipamentosRepository : IEquipamentosRepository
     {
+        //Gera o context para uso nos métodos
         PatrimonioContext ctx = new PatrimonioContext();
+
         /// <summary>
         /// Faz a atualização de um equipamento
         /// </summary>
@@ -20,6 +23,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         {
             Equipamento equipamentoBuscado = ctx.Equipamentos.Find(id);
 
+            //Sistema de atualização das entidades
             if (equipamentoAtualizado.Descricao != null)
             {
                 equipamentoBuscado.Descricao = equipamentoAtualizado.Descricao;
@@ -44,6 +48,11 @@ namespace senai_sistemadegestao_webapi.Repositories
             {
                 equipamentoBuscado.Status = equipamentoAtualizado.Status;
             }
+
+            if (equipamentoAtualizado.NumeroPatrimonio != null)
+            {
+                equipamentoBuscado.NumeroPatrimonio = equipamentoAtualizado.NumeroPatrimonio;
+            }
         }
 
         /// <summary>
@@ -53,6 +62,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <returns>O equipamento com suas informações</returns>
         public Equipamento BuscarPorId(int id)
         {
+            //Método de busca
             return ctx.Equipamentos.FirstOrDefault(e => e.IdEquipamento == id);
         }
 
@@ -62,8 +72,10 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <param name="novoEquipamento">Nomenclatura de cadastro</param>
         public void Cadastrar(Equipamento novoEquipamento)
         {
+            //Faz o cadastro
             ctx.Equipamentos.Add(novoEquipamento);
 
+            //Salva as inserções
             ctx.SaveChanges();
         }
 
@@ -73,8 +85,10 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <param name="id">Identificador</param>
         public void Deletar(int id)
         {
+            //Apaga os dados
             ctx.Equipamentos.Remove(BuscarPorId(id));
 
+            //Salva alterações
             ctx.SaveChanges();
         }
 
@@ -84,6 +98,7 @@ namespace senai_sistemadegestao_webapi.Repositories
         /// <returns>A lista com todos os equipamentos cadastrados</returns>
         public List<Equipamento> ListarTodos()
         {
+            //Faz toda a listagem
             return ctx.Equipamentos.ToList();
         }
     }

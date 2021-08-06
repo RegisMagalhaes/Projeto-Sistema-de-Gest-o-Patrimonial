@@ -21,7 +21,8 @@ CREATE TABLE Equipamentos
 	Tipo				VARCHAR(200)NOT NULL, 
 	Numero_de_Serie		CHAR(200)NOT NULL,
 	Descricao			VARCHAR(200)NOT NULL,
-	Status_             VARCHAR(200)NOT NULL        
+	Status_             VARCHAR(200)NOT NULL,
+	NumeroPatrimonio    CHAR(200) NOT NULL
 
 );
 GO
