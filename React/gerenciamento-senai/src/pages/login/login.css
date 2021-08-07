@@ -1,0 +1,79 @@
+/*Propriedades do Login*/
+
+.main-login {
+  min-height: 100vh;
+  background: #5b7cfe;
+  display: flex;
+}
+
+.container-login {
+  margin: auto;
+  width: 500px;
+  max-width: 100%;
+}
+.container-login form {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  background: #e7eff8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.container-login form img {
+  width: 100%;
+  height: auto;
+}
+
+.container-login form .form-input {
+  width: 100%;
+  height: 40px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid;
+  margin: 10px 0 18px 0;
+  padding: 0 8px;
+  color: #6b7682;
+}
+
+.container-login form .btn-login  {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  height: 50px;
+  background: #5b7cfe;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: white;
+  transition: 0.3s;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.container-login form .btn-login:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 360px){
+    .container-login form {
+        width: 95%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 414px){
+    .container-login form{
+        width: 90%;
+        margin: 13px;
+    }
+}
+
+@media (max-width: 280px){
+     
+}
+
