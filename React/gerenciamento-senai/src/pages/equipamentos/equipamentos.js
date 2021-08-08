@@ -58,7 +58,7 @@ export default class Equipamentos extends Component {
                   <i className="bx bxs-microchip"></i> Equipamentos
                 </button>
                 <div className="dropdown-content">
-                  <a href="#">Novo Equipamento</a>
+                  <a href="/CadEquipamentos">Novo Equipamento</a>
                   <a href="/equipamentos">Todos os equipamentos</a>
                 </div>
               </div>
@@ -78,7 +78,7 @@ export default class Equipamentos extends Component {
               <div ClassName="container-text">
                 <h1>Equipamentos</h1>
                 <button className="btn">
-                  <a href="">Adicionar Novo Equipamento</a>
+                  <a href="/CadEquipamentos">Adicionar Novo Equipamento</a>
                 </button>
               </div>
 

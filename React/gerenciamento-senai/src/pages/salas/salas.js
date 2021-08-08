@@ -10,6 +10,7 @@ export default class Salas extends Component {
         andar: "",
         nome: "",
         metragem: "",
+        idSalaNavigation: ""
       },
     };
   }
@@ -50,7 +51,7 @@ export default class Salas extends Component {
                   <i className="bx bxs-microchip"></i> Equipamentos
                 </button>
                 <div className="dropdown-content">
-                  <a href="#">Novo Equipamento</a>
+                  <a href="/CadEquipamentos">Cadastrar Equipamento</a>
                   <a href="/equipamentos">Todos os equipamentos</a>
                 </div>
               </div>
@@ -59,8 +60,8 @@ export default class Salas extends Component {
                   <i className="bx bxs-buildings"></i> Salas
                 </button>
                 <div className="dropdown-content">
-                  <a href="index.html">Nova Sala</a>
-                  <a href="/Salas">Todos as Salas</a>
+                  <a href="/CadSala">Cadastrar Sala</a>
+                  <a href="/Salas">Todas as Salas</a>
                 </div>
               </div>
             </div>
@@ -69,7 +70,7 @@ export default class Salas extends Component {
               <div ClassName="container-text">
                 <h1>Salas</h1>
                 <button className="btn">
-                  <a href="">Adicionar nova Sala</a>
+                  <a href="/CadSala">Adicionar nova Sala</a>
                 </button>
               </div>
 
@@ -94,6 +95,7 @@ export default class Salas extends Component {
                         <p>Sala: {Salas.nome}</p>
                         <p>Andar: {Salas.andar}</p>
                         <p>Tamanho: {Salas.metragem}m²</p>
+                        <p>Equipamentos: {Salas.idSalaNavigation}</p>
                         </div>
         
                           <a href="http://" class="btn-edit">

@@ -2,34 +2,41 @@ import React, { Component } from "react";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
 
-export default class CadSala extends Component {
+export default class CadEquipamento extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Sala: {
-        nome: "",
-        andar: "",
-        metragem: "",
+      Equipamento: {
+        Descricao: "",
+        Marca: "",
+        Tipo: "",
+        NumeroDeSerie: "",
+        Status: "",
+        numeroPatrimonio: "",
+        idSala: "",
       },
     };
   }
 
-  cadastrarSala = (event) => {
+  cadastrarEquipamento = (event) => {
     event.preventDefault();
 
-    let sala = {
-      nome: this.state.Sala.nome,
-      andar: this.state.Sala.andar,
-      metragem: this.state.Sala.metragem,
+    let equipamento = {
+      Descricao: this.state.Equipamento.Descricao,
+      Tipo: this.state.Equipamento.Tipo,
+      Marca: this.state.Equipamento.Marca,
+      numeroDeSerie: this.state.Equipamento.numeroDeSerie,
+      numeroPatrimonio: this.state.Equipamento.numeroPatrimonio,
+      status: this.state.Equipamento.status,
+      idSala: this.state.Equipamento.idSala,
     };
 
     api
-      .post("/Sala", sala)
+      .post("/Equipamento", equipamento)
 
       .then((resposta) => {
         if (resposta.status === 201) {
-          window.alert('Sala criada com sucesso!');
-          window.location.href='/Salas';
+          alert("Equipamento cadastrado!");
         }
       })
 
@@ -40,8 +47,8 @@ export default class CadSala extends Component {
 
   atualizarState = (campo) => {
     this.setState((prevState) => ({
-      Sala: {
-        ...prevState.Sala,
+      Equipamento: {
+        ...prevState.Equipamento,
         [campo.target.name]: campo.target.value,
       },
     }));
@@ -67,7 +74,7 @@ export default class CadSala extends Component {
                   <i className="bx bxs-microchip"></i> Equipamentos
                 </button>
                 <div className="dropdown-content">
-                  <a href="/CadEquipamentos">Cadastrar Equipamento</a>
+                  <a href="/CadEquipamento">Cadastrar Equipamento</a>
                   <a href="/equipamentos">Todos os equipamentos</a>
                 </div>
               </div>
@@ -83,50 +90,65 @@ export default class CadSala extends Component {
             </div>
 
             <main>
-              <a href="/Salas" className="link-redirect">Retornar para todas as Salas</a>
               <div ClassName="container-text">
-                <h1>Cadastrar nova Sala</h1>
+                <h1>Cadastrar novo Equipamento</h1>
               </div>
 
               <section className="main-form">
-                <form onSubmit={this.cadastrarSala}>
+                <form action="#" method="post">
                   <fieldset>
                     <div className="container-form">
-                      <label htmlFor="nome">Nome da Sala</label>
+                      <label htmlFor="nomeEquipamento">
+                        Nome do Equipamento
+                      </label>
                       <input
                         type="text"
-                        name="nome"
-                        id="nome"
-                        value={this.state.Sala.nome}
-                        onChange={this.atualizarState}
+                        name="nomeEquipamento"
+                        id="nomeEquipamento"
                         required
                       />
                     </div>
                   </fieldset>
                   <fieldset>
                     <div className="container-form">
-                      <label htmlFor="marca">Andar</label>
+                      <label htmlFor="marca">Marca:</label>
+                      <input type="text" name="marca" id="marca" required />
+                    </div>
+                    <div className="container-form">
+                      <label htmlFor="numeroSerie">Número de série:</label>
                       <input
                         type="text"
-                        name="andar"
-                        id="andar"
-                        value={this.state.Sala.andar}
-                        onChange={this.atualizarState}
+                        name="numeroSerie"
+                        id="numeroSerie"
                         required
                       />
                     </div>
                     <div className="container-form">
-                      <label htmlFor="numeroSerie">Metragem</label>
+                      <label htmlFor="numeroDePatrimonio">
+                        Número de Patrimônio:
+                      </label>
                       <input
-                        type="number"
-                        name="metragem"
-                        id="metragem"
-                        value={this.state.Sala.metragem}
-                        onChange={this.atualizarState}
+                        type="text"
+                        name="numeroDePatrimonio"
+                        id="numeroDePatrimonio"
                         required
                       />
                     </div>
                   </fieldset>
+
+                  <fieldset>
+                  <div className="container-form">
+                    
+                  </div>
+
+                  <label for="cars">Sala:</label>
+                    <select name="salas" id="salas">
+                      <option value="value1">Fruits</option>
+                    </select>
+                    
+                      
+                  </fieldset>
+
                   <input
                     type="submit"
                     defaultValue="Cadastrar"

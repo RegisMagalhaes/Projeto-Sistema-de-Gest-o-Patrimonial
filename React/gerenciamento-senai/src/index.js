@@ -9,6 +9,8 @@ import './index.css';
 import Login from './pages/login/login';
 import Equipamentos from './pages/equipamentos/equipamentos'
 import Salas from './pages/salas/salas'
+import CadEquipamentos from './pages/cadEquipamento/cadEquipamento'
+import CadSala from './pages/cadSala/cadSala'
 
 import reportWebVitals from './reportWebVitals';
 
@@ -20,6 +22,8 @@ const routing = (
         <Route exact path="/" component={Login} /> 
         <Route exact path="/equipamentos" component={Equipamentos} /> 
         <Route exact path="/salas" component={Salas} />
+        <Route exact path="/cadequipamentos" component={CadEquipamentos} />
+        <Route exact path="/cadsala" component={CadSala} />
 
       </Switch>
     </div>

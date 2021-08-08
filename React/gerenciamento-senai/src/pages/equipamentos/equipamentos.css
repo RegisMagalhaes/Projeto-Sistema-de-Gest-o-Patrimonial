@@ -11,7 +11,6 @@ main {
   width: 100vw;
   background: #e7eff8;
   margin-left: 12%;
-  
 }
 
 body {
@@ -79,8 +78,6 @@ body {
   background-color: #5374ef;
 }
 
-
-
 h1 {
   padding: 50px;
   padding-bottom: 0px;
@@ -134,17 +131,16 @@ h1 {
 summary {
   position: relative;
   display: flex;
-  max-width: 90%;
+  width: 90%;
   height: 4%;
   background: #ffffff;
   margin-top: 1%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
-  padding: 25px;
+  padding: 20px;
   cursor: pointer;
   max-height: 100vh;
-  
 }
 
 summary:hover {
@@ -205,8 +201,6 @@ summary p {
   font-weight: bold;
 }
 
-
-
 .btn-edit {
   width: 120px;
   height: 48px;
@@ -215,4 +209,126 @@ summary p {
   color: white;
   align-items: center;
   padding-left: 40px;
+}
+
+.main-form {
+  margin-top: 2%;
+  margin-left: 20%;
+  padding: 30px 5px;
+  width: 50%;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset:nth-child(1) {
+  padding-top: -10px;
+  
+}
+
+fieldset:nth-child(2) {
+  display: flex;
+  margin-top: 4%;
+  margin-left: 1.5%
+}
+
+fieldset:nth-child(3) {
+ display: block;
+  margin-top: 4%;
+  margin-left: 1.5%
+}
+
+fieldset:nth-child(1) input {
+  width: 97%;
+  height: 30px;
+  background: white;
+  border: 1px solid;
+  padding: 0 8px;
+  background: rgba(214, 218, 222, 0.35);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  margin-left: 1.5%;
+}
+
+fieldset:nth-child(1) label{
+  margin-left: 1.5%;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  user-select: none;
+  pointer-events: none;
+}
+
+fieldset:nth-child(2) input{
+  width: 91%;
+  height: 30px;
+  background: white;
+  border: 1px solid;
+  padding: 0 8px;
+  background: rgba(214, 218, 222, 0.35);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+fieldset:nth-child(2) label{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  user-select: none;
+  pointer-events: none;
+}
+
+fieldset:nth-child(3) select {
+  width: 20%;
+  height: 30px;
+  background: white;
+  border: 1px solid;
+  padding: 0 8px;
+  background: rgba(214, 218, 222, 0.35);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  margin-left: 1.5%;
+}
+
+fieldset:nth-child(3) label{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+.main-form form .btn-login {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  height: 50px;
+  margin-top: 140px;
+  background: #5b7cfe;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: white;
+  transition: 0.3s;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.main-form form .btn-login:hover {
+  opacity: 0.7;
+}
+
+.link-redirect{
+  text-decoration: none;
+  float: right;
 }
