@@ -196,7 +196,6 @@ summary p {
 }
 
 .content a:hover {
-  opacity: 0.5;
   color: black;
   font-weight: bold;
 }
@@ -209,6 +208,18 @@ summary p {
   color: white;
   align-items: center;
   padding-left: 40px;
+  cursor: pointer;
+}
+
+.btn-del{
+  width: 120px;
+  height: 48px;
+  background: #d60404;
+  text-decoration: none;
+  color: white;
+  align-items: center;
+  padding-left: 35px;
+  cursor: pointer;
 }
 
 .main-form {
@@ -283,7 +294,7 @@ fieldset:nth-child(2) label{
   pointer-events: none;
 }
 
-fieldset:nth-child(3) select {
+fieldset:nth-child(3) input {
   width: 20%;
   height: 30px;
   background: white;

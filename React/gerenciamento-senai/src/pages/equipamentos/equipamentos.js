@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../equipamentos/equipamentos.css";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
+import swal from 'sweetalert';
 
 export default class Equipamentos extends Component {
   constructor(props) {
@@ -28,8 +29,22 @@ export default class Equipamentos extends Component {
           this.setState({ listaEquipamentos: resposta.data });
         }
       })
-      .catch((erro) => alert(erro));
+      .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
+
+  deletarEquipamento = (Equipamento) => {
+    this.setState({
+        idEquipamento : Equipamentos.idSala
+    })
+    api.delete('/Equipamento/' + Equipamento.idEquipamento )
+    .then(resposta => {
+        if (resposta.status === 204) {
+          swal("Sucesso!", "A O Equipamento foi deletado com Sucesso!", "success");
+        }
+    })
+    .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"))
+    .then(this.buscarEquipamentos)
+}
 
   
   componentDidMount() {
@@ -108,9 +123,10 @@ export default class Equipamentos extends Component {
                         <p>Sala: {equipamento.idSala}</p>
                         </div>
                         
-                          <a href="http://" class="btn-edit">
-                            Editar
-                          </a>
+                        <div className="botoes">
+                        <a className="btn-edit">Editar</a>
+                        <a className="btn-del" onClick={() => this.deletarEquipamento(equipamento)}>Deletar</a>
+                        </div>
               
                       </div>
                     </details>

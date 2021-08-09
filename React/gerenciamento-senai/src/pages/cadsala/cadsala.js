@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
+import swal from 'sweetalert';
+
 
 export default class CadSala extends Component {
   constructor(props) {
@@ -23,22 +25,19 @@ export default class CadSala extends Component {
       metragem: this.state.Sala.metragem,
     };
 
-    api
-      .post("/Sala", sala)
+    api.post("/Sala", sala)
 
       .then((resposta) => {
         if (resposta.status === 201) {
-          window.alert('Sala criada com sucesso!');
-          window.location.href='/Salas';
+          swal("Sucesso!", `A Sala "${this.state.Sala.nome}" foi cadastrada com sucesso!`, "success").then(function() {
+            window.location = "/Salas";
+        });;
         }
       })
-
-      .catch((erro) => {
-        alert(erro);
-      });
+      .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
 
-  atualizarState = (campo) => {
+  updateState = (campo) => {
     this.setState((prevState) => ({
       Sala: {
         ...prevState.Sala,
@@ -46,6 +45,10 @@ export default class CadSala extends Component {
       },
     }));
   };
+
+  componentDidMount() {
+    document.title = "Cadastrar Sala";
+  }
 
   render() {
     return (
@@ -67,7 +70,7 @@ export default class CadSala extends Component {
                   <i className="bx bxs-microchip"></i> Equipamentos
                 </button>
                 <div className="dropdown-content">
-                  <a href="/CadEquipamentos">Cadastrar Equipamento</a>
+                  <a href="/CadEquipamento">Cadastrar Equipamento</a>
                   <a href="/equipamentos">Todos os equipamentos</a>
                 </div>
               </div>
@@ -98,7 +101,7 @@ export default class CadSala extends Component {
                         name="nome"
                         id="nome"
                         value={this.state.Sala.nome}
-                        onChange={this.atualizarState}
+                        onChange={this.updateState}
                         required
                       />
                     </div>
@@ -111,7 +114,7 @@ export default class CadSala extends Component {
                         name="andar"
                         id="andar"
                         value={this.state.Sala.andar}
-                        onChange={this.atualizarState}
+                        onChange={this.updateState}
                         required
                       />
                     </div>
@@ -122,7 +125,7 @@ export default class CadSala extends Component {
                         name="metragem"
                         id="metragem"
                         value={this.state.Sala.metragem}
-                        onChange={this.atualizarState}
+                        onChange={this.updateState}
                         required
                       />
                     </div>

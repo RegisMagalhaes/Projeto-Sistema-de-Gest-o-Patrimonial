@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
+import swal from 'sweetalert';
+
 
 export default class CadEquipamento extends Component {
   constructor(props) {
@@ -12,40 +14,34 @@ export default class CadEquipamento extends Component {
         Tipo: "",
         NumeroDeSerie: "",
         Status: "",
-        numeroPatrimonio: "",
-        idSala: "",
+        NumeroPatrimonio: ""
       },
     };
   }
 
   cadastrarEquipamento = (event) => {
     event.preventDefault();
-
     let equipamento = {
       Descricao: this.state.Equipamento.Descricao,
       Tipo: this.state.Equipamento.Tipo,
       Marca: this.state.Equipamento.Marca,
-      numeroDeSerie: this.state.Equipamento.numeroDeSerie,
-      numeroPatrimonio: this.state.Equipamento.numeroPatrimonio,
+      NumeroDeSerie: this.state.Equipamento.NumeroDeSerie,
+      NumeroPatrimonio: this.state.Equipamento.NumeroPatrimonio,
       status: this.state.Equipamento.status,
-      idSala: this.state.Equipamento.idSala,
     };
 
-    api
-      .post("/Equipamento", equipamento)
+    api.post("/Equipamento", equipamento)
 
       .then((resposta) => {
         if (resposta.status === 201) {
-          alert("Equipamento cadastrado!");
+          swal("Sucesso!", "O Equipamento foi cadastrado com sucesso!", "success");
         }
       })
 
-      .catch((erro) => {
-        alert(erro);
-      });
+      .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
 
-  atualizarState = (campo) => {
+  updateState = (campo) => {
     this.setState((prevState) => ({
       Equipamento: {
         ...prevState.Equipamento,
@@ -53,6 +49,8 @@ export default class CadEquipamento extends Component {
       },
     }));
   };
+
+
 
   render() {
     return (
@@ -95,7 +93,7 @@ export default class CadEquipamento extends Component {
               </div>
 
               <section className="main-form">
-                <form action="#" method="post">
+                <form onSubmit={this.cadastrarEquipamento}>
                   <fieldset>
                     <div className="container-form">
                       <label htmlFor="nomeEquipamento">
@@ -103,49 +101,76 @@ export default class CadEquipamento extends Component {
                       </label>
                       <input
                         type="text"
-                        name="nomeEquipamento"
-                        id="nomeEquipamento"
+                        name="Descricao"
+                        id="Descricao"
+                        value={this.state.Equipamento.Descricao}
+                        onChange={this.updateState}
                         required
                       />
+                     
                     </div>
                   </fieldset>
                   <fieldset>
                     <div className="container-form">
                       <label htmlFor="marca">Marca:</label>
-                      <input type="text" name="marca" id="marca" required />
+                      <input type="text" name="Marca" id="Marca" value={this.state.Equipamento.Marca} onChange={this.updateState} required />
                     </div>
                     <div className="container-form">
-                      <label htmlFor="numeroSerie">Número de série:</label>
+                      <label htmlFor="NumeroDeSerie">Número de série:</label>
                       <input
                         type="text"
-                        name="numeroSerie"
-                        id="numeroSerie"
+                        name="NumeroDeSerie"
+                        id="NumeroDeSerie"
+                        value={this.state.Equipamento.NumeroDeSerie}
+                        onChange={this.updateState}
                         required
                       />
                     </div>
                     <div className="container-form">
-                      <label htmlFor="numeroDePatrimonio">
+                      <label htmlFor="NumeroPatrimonio">
                         Número de Patrimônio:
                       </label>
                       <input
                         type="text"
-                        name="numeroDePatrimonio"
-                        id="numeroDePatrimonio"
+                        name="NumeroPatrimonio"
+                        id="NumeroPatrimonio"
+                        value={this.state.Equipamento.NumeroPatrimonio}
+                        onChange={this.updateState}
+                        required
+                      />
+                    </div>
+
+                    <div className="container-form">
+                      <label htmlFor="Status">
+                        Status:
+                      </label>
+                      <input
+                        type="text"
+                        name="status"
+                        id="status"
+                        value={this.state.Equipamento.status}
+                        onChange={this.updateState}
+
+                        required
+                      />
+                    </div>
+                    <div className="container-form">
+                      <label htmlFor="Tipo">
+                        Tipo
+                      </label>
+                      <input
+                        type="text"
+                        name="Tipo"
+                        id="Tipo"
+                        value={this.state.Equipamento.Tipo}
+                        onChange={this.updateState}
                         required
                       />
                     </div>
                   </fieldset>
 
                   <fieldset>
-                  <div className="container-form">
-                    
-                  </div>
-
-                  <label for="cars">Sala:</label>
-                    <select name="salas" id="salas">
-                      <option value="value1">Fruits</option>
-                    </select>
-                    
+                  
                       
                   </fieldset>
 

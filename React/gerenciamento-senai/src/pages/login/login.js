@@ -3,6 +3,7 @@ import api from '../../services/api'
 import { parseJwt } from '../../services/auth';
 import logo from '../../assets/img/logo-login.png'
 import '../login/login.css'
+import swal from 'sweetalert';
 
 export default class Login extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class Login extends Component {
 
         this.setState({ isLoading: true })
 
-        api.post("/usuario", {
+        api.post("/login", {
             email: this.state.user.email,
             senha: this.state.user.senha
         })
@@ -38,13 +39,12 @@ export default class Login extends Component {
                     }
                     else{
                         alert("Usuário ou senha Incorretos. Tente novamente")
+                        swal("Ocorreu um erro!", "Usuário ou senha incorretos. Tente novamente", "error")
                         this.props.history.push('/')
                     }
                 }
             })
-            .catch(error => {
-                alert(error)
-            })
+            .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
     }
 
     updateState = (campo) => {
@@ -56,6 +56,9 @@ export default class Login extends Component {
         }))
     }
 
+    componentDidMount() {
+      document.title = "Login";
+    }
 
   render() {
     return (

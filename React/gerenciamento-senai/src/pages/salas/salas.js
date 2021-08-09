@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
+import swal from 'sweetalert';
+
 export default class Salas extends Component {
   constructor(props) {
     super(props);
@@ -10,25 +12,37 @@ export default class Salas extends Component {
         andar: "",
         nome: "",
         metragem: "",
-        idSalaNavigation: ""
       },
     };
   }
 
   buscarSalas = () => {
     api.get("/Sala")
-
       .then((resposta) => {
         if (resposta.status === 200) {
           this.setState({ listaSalas: resposta.data });
         }
       })
-      .catch((erro) => alert(erro));
+      .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
+
+  deletarSala = (Salas) => {
+    this.setState({
+        idSala : Salas.idSala
+    })
+    api.delete('/Sala/' + Salas.idSala )
+    .then(resposta => {
+        if (resposta.status === 204) {
+          swal("Sucesso!", "A Sala foi deletada com Sucesso!", "success");
+        }
+    })
+    .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"))
+    .then(this.buscarSalas)
+}
 
   componentDidMount() {
     this.buscarSalas();
-    document.title = "Salas";
+    document.title = "Todas as Salas";
   }
 
   render() {
@@ -67,20 +81,20 @@ export default class Salas extends Component {
             </div>
 
             <main>
-              <div ClassName="container-text">
+              <div className="container-text">
                 <h1>Salas</h1>
                 <button className="btn">
                   <a href="/CadSala">Adicionar nova Sala</a>
                 </button>
               </div>
 
-              <div class="main-header">
+              <div className="main-header">
                 <p>Sala</p>
                 <p>Andar</p>
                 <p>Metragem</p>
               </div>
 
-              <section ClassName="main-equip">
+              <section className="main-equip">
                 {this.state.listaSalas.map((Salas) => {
                   return (
                     <details>
@@ -89,19 +103,17 @@ export default class Salas extends Component {
                         <p>{Salas.andar}</p>
                         <p>{Salas.metragem} m²</p>
                       </summary>
-                      <div class="content">
-                        <div class="paragrafos">
-                        <p>Número: {Salas.idSala}</p>
+                      <div className="content">
+                        <div className="paragrafos">
                         <p>Sala: {Salas.nome}</p>
                         <p>Andar: {Salas.andar}</p>
                         <p>Tamanho: {Salas.metragem}m²</p>
-                        <p>Equipamentos: {Salas.idSalaNavigation}</p>
+                        <p>Equipamentos: {Salas.IdEquipamentoNavigation}</p>
                         </div>
-        
-                          <a href="http://" class="btn-edit">
-                            Editar
-                          </a>
-                    
+                        <div className="botoes">
+                        <a className="btn-edit">Editar</a>
+                        <a className="btn-del" onClick={() => this.deletarSala(Salas)}>Deletar</a>
+                        </div>
                       </div>
                     </details>
                   );
