@@ -22,13 +22,13 @@ namespace senai_sistemadegestao_webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                //Adiciona o serviço dos Controllers
+                //Adiciona o serviï¿½o dos Controllers
                 .AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
                     //Ignora os loopings nas consultas
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    //Ignora valores nulos ao fazer junções nas consultas
+                    //Ignora valores nulos ao fazer junï¿½ï¿½es nas consultas
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
 
@@ -53,20 +53,8 @@ namespace senai_sistemadegestao_webapi
                      };
 
                  });
-                    services.AddCors(options =>
-                    {
-                        options.AddPolicy("CorsPolicy",
-                            builder =>
-                            {
-                                builder.WithOrigins("http://localhost:3000/%22")
-                                                                            .AllowAnyHeader()
-                                                                            .AllowAnyMethod();
-                            }
-                        );
-                    });
-                    
-
-            //Adiciona o serviço do swagger
+                   
+            //Adiciona o serviï¿½o do swagger
             //https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-5.0
             services.AddSwaggerGen(c => {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Patrimonios.WebAPI", Version = "v1" });
@@ -77,7 +65,17 @@ namespace senai_sistemadegestao_webapi
                 });
 
 
-             
+              services.AddCors(options =>
+                    {
+                        options.AddPolicy("CorsPolicy",
+                            builder =>
+                            {
+                                builder.WithOrigins("http://localhost:3000")
+                                                                            .AllowAnyHeader()
+                                                                            .AllowAnyMethod();
+                            }
+                        );
+                    });
 
 
         }
@@ -100,7 +98,7 @@ namespace senai_sistemadegestao_webapi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Gestão de Patrimônios");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Gestï¿½o de Patrimï¿½nios");
                 c.RoutePrefix = string.Empty;
             });
 
