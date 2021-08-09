@@ -53,6 +53,18 @@ namespace senai_sistemadegestao_webapi
                      };
 
                  });
+                    services.AddCors(options =>
+                    {
+                        options.AddPolicy("CorsPolicy",
+                            builder =>
+                            {
+                                builder.WithOrigins("http://localhost:3000/%22")
+                                                                            .AllowAnyHeader()
+                                                                            .AllowAnyMethod();
+                            }
+                        );
+                    });
+                    
 
             //Adiciona o serviço do swagger
             //https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-5.0
@@ -80,6 +92,9 @@ namespace senai_sistemadegestao_webapi
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
+
+            //Habilita o Cors
+            app.UseCors("CorsPolicy");
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.

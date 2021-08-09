@@ -9,7 +9,7 @@ namespace senai_sistemadegestao_webapi.Domains
     public partial class Equipamento
     {
         public int IdEquipamento { get; set; }
-        public int? IdSala { get; set; }
+        public int IdSala { get; set; }
 
         [Required(ErrorMessage = "O cadastro da Marca do Equipamento é obrigatório!")]
         
@@ -27,8 +27,8 @@ namespace senai_sistemadegestao_webapi.Domains
         
         public string Status { get; set; }
 
-        public string NumeroPatrimonio { get; set; }
         [Required(ErrorMessage = "O número do patrimônio é obrigatório")]
+        public string NumeroPatrimonio { get; set; }
 
         public virtual Sala IdSalaNavigation { get; set; }
     }
