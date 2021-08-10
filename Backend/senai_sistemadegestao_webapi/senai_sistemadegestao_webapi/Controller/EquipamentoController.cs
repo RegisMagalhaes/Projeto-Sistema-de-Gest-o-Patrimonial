@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai_sistemadegestao_webapi.Domains;
 using senai_sistemadegestao_webapi.Interfaces;
@@ -35,7 +36,16 @@ namespace senai_sistemadegestao_webapi.Controller
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_equipamentoRepository.ListarTodos());
+            try
+            {
+                // Retorna a resposta da requisição fazendo a chamada para o método
+                return Ok(_equipamentoRepository.ListarTodos());
+                
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
         }
 
         /// <summary>
@@ -46,7 +56,16 @@ namespace senai_sistemadegestao_webapi.Controller
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            return Ok(_equipamentoRepository.BuscarPorId(id));
+            try
+            {
+                // Retora a resposta da requisição fazendo a chamada para o método
+                return Ok(_equipamentoRepository.BuscarPorId(id));
+                
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
         }
 
         /// <summary>
@@ -54,12 +73,25 @@ namespace senai_sistemadegestao_webapi.Controller
         /// </summary>
         /// <param name="novoEquipamento">Nomenclatura de cadastro</param>
         /// <returns>Objeto cadastrado</returns>
+        [Authorize(Roles="1")]
         [HttpPost]
         public IActionResult Post(Equipamento novoEquipamento)
         {
-            _equipamentoRepository.Cadastrar(novoEquipamento);
+            try
+            {
+                // Faz a chamada para o método
+                _equipamentoRepository.Cadastrar(novoEquipamento);
+                
 
-            return StatusCode(201);
+                // Retorna um status code
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+            
         }
 
         /// <summary>
@@ -68,12 +100,25 @@ namespace senai_sistemadegestao_webapi.Controller
         /// <param name="id">Identificador</param>
         /// <param name="equipamentoAtualizado">Nomenclatura de atualização</param>
         /// <returns>objeto atualizado com suas informações</returns>
+        [Authorize(Roles = "1")]
         [HttpPut]
         public IActionResult Atualizar(int id, Equipamento equipamentoAtualizado)
         {
-            _equipamentoRepository.Atualizar(id, equipamentoAtualizado);
+            try
+            {
+                // Faz a chamada para o método
+                _equipamentoRepository.Atualizar(id, equipamentoAtualizado);
+               
 
-            return StatusCode(204);
+                // Retorna um status code
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+           
         }
 
         /// <summary>
@@ -81,6 +126,7 @@ namespace senai_sistemadegestao_webapi.Controller
         /// </summary>
         /// <param name="id">Identificador do objeto</param>
         /// <returns>O objeto excluído</returns>
+        [Authorize(Roles = "1")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {

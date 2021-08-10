@@ -45,7 +45,16 @@ namespace senai_sistemadegestao_webapi.Controller
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            return Ok(_salaRepository.BuscarPorId(id));
+            try
+            {
+                // Retorna a resposta da requisição fazendo a chamada para o método
+                return Ok(_salaRepository.BuscarPorId(id));
+                
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
         }
 
         /// <summary>
@@ -56,9 +65,19 @@ namespace senai_sistemadegestao_webapi.Controller
         [HttpPost]
         public IActionResult Post(Sala novaSala)
         {
-            _salaRepository.Cadastrar(novaSala);
+            try
+            {
+                // Faz a chamada para o método
+                _salaRepository.Cadastrar(novaSala);
 
-            return StatusCode(201);
+                // Retorna um status code
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
 
         /// <summary>
@@ -70,9 +89,21 @@ namespace senai_sistemadegestao_webapi.Controller
         [HttpPut("{id}")]
         public IActionResult Put(int id, Sala salaAtualizada)
         {
-            _salaRepository.Atualizar(id, salaAtualizada);
+            try
+            {
+                // Faz a chamada para o método
+                _salaRepository.Atualizar(id, salaAtualizada);
+                
 
-            return StatusCode(204);
+                // Retorna um status code
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+           
         }
 
         /// <summary>
