@@ -127,10 +127,10 @@ export default class Equipamentos extends Component {
                         <p>Status: {equipamento.status}</p>
                         <p>Sala: {equipamento.idSala}</p>
                         </div>
-                        
+                  
                         <div className="botoes">
                         <a className="btn-edit" href={'/equipamentos/editEquipamento/' + equipamento.idEquipamento}>Editar</a>
-                        <a className="btn-del" onClick={() => this.deletarSala(equipamento)}>Deletar</a>
+                        <a className="btn-del" onClick={() => this.deletarEquipamento(equipamento)}>Deletar</a>
                         </div>
               
                       </div>

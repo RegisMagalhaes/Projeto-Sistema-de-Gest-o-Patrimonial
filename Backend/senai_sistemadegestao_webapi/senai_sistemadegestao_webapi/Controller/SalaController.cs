@@ -67,12 +67,20 @@ namespace senai_sistemadegestao_webapi.Controller
         /// <param name="id">Identificador</param>
         /// <param name="salaAtualizada">Nomenclatura do objeto atualizado</param>
         /// <returns>Objeto com suas informações atualizadas</returns>
+    
         [HttpPut("{id}")]
         public IActionResult Put(int id, Sala salaAtualizada)
         {
-            _salaRepository.Atualizar(id, salaAtualizada);
+            try
+            {
+                _salaRepository.Atualizar(id, salaAtualizada);
 
-            return StatusCode(204);
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>

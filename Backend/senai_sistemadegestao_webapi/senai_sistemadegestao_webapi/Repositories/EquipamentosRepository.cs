@@ -53,6 +53,8 @@ namespace senai_sistemadegestao_webapi.Repositories
             {
                 equipamentoBuscado.NumeroPatrimonio = equipamentoAtualizado.NumeroPatrimonio;
             }
+
+            ctx.SaveChanges();
         }
 
         /// <summary>

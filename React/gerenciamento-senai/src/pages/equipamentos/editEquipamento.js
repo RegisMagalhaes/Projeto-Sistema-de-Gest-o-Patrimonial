@@ -4,7 +4,7 @@ import logo from "../../assets/img/logo-azul.png";
 import swal from 'sweetalert';
 
 
-export default class CadEquipamento extends Component {
+export default class editSala extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,8 @@ export default class CadEquipamento extends Component {
 
   editarEquipamento = (event) => {
     event.preventDefault();
-    let equipamento = {
+   
+    let editEquip = {
       Descricao: this.state.Equipamento.Descricao,
       Tipo: this.state.Equipamento.Tipo,
       Marca: this.state.Equipamento.Marca,
@@ -32,30 +33,30 @@ export default class CadEquipamento extends Component {
       idSala: this.state.Equipamento.idSala
     };
 
-    api.put("/Equipamento", equipamento)
-
-    .then((resposta) => {
-      if (resposta.status === 201) {
-        swal("Sucesso!", `O Equipamento  foi cadastrado com sucesso!`, "success").then(function() {
-          window.location = "/Equipamentos";
-      });;
-      }
-    })
-
+    api.put("/Equipamento/45" , editEquip)
+      .then((resposta) => {
+        if (resposta.status === 204) {
+          swal("Sucesso!", `A Sala "${this.state.editarEquipamento.nome}" foi editada com sucesso!`, "success").then(function() {
+            window.location = "/Equipamentos";
+            console.log(resposta);
+        });;
+        }
+      })
       .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
-
+  
+  
   updateState = (campo) => {
     this.setState((prevState) => ({
       Equipamento: {
-        ...prevState.Equipamento,
+        ...prevState.editEquip,
         [campo.target.name]: campo.target.value,
       },
     }));
   };
 
-  componentDidMount(){
-    document.title = "Editar Equipamento"
+  componentDidMount() {
+    document.title = "Editar Equipamento";
   }
 
 

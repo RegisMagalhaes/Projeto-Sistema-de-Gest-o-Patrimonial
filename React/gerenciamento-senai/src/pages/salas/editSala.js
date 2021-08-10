@@ -8,7 +8,8 @@ export default class editSala extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Sala: {
+      editSala: {
+        idSala: "",
         nome: "",
         andar: "",
         metragem: "",
@@ -18,29 +19,32 @@ export default class editSala extends Component {
 
   editarSala = (event) => {
     event.preventDefault();
+    console.log(this.state.editSala.idSala)
 
-    let sala = {
-      nome: this.state.Sala.nome,
-      andar: this.state.Sala.andar,
-      metragem: this.state.Sala.metragem,
+    let editSala = {
+      nome: this.state.editSala.nome,
+      andar: this.state.editSala.andar,
+      metragem: this.state.editSala.metragem,
     };
 
-    api.post("/Sala", sala)
-
+    api.put("/Sala/38" , editSala)
       .then((resposta) => {
-        if (resposta.status === 201) {
-          swal("Sucesso!", `A Sala "${this.state.Sala.nome}" foi cadastrada com sucesso!`, "success").then(function() {
+        if (resposta.status === 204) {
+          swal("Sucesso!", `A Sala "${this.state.editSala.nome}" foi editada com sucesso!`, "success").then(function() {
             window.location = "/Salas";
+            this.deletarSala();
+            console.log(resposta);
         });;
         }
       })
       .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"));
   };
-
+  
+  
   updateState = (campo) => {
     this.setState((prevState) => ({
-      Sala: {
-        ...prevState.Sala,
+      editSala: {
+        ...prevState.editSala,
         [campo.target.name]: campo.target.value,
       },
     }));
@@ -100,7 +104,7 @@ export default class editSala extends Component {
                         type="text"
                         name="nome"
                         id="nome"
-                        value={this.state.Sala.nome}
+                        value={this.state.editSala.nome}
                         onChange={this.updateState}
                         required
                       />
@@ -113,7 +117,7 @@ export default class editSala extends Component {
                         type="text"
                         name="andar"
                         id="andar"
-                        value={this.state.Sala.andar}
+                        value={this.state.editSala.andar}
                         onChange={this.updateState}
                         required
                       />
@@ -124,7 +128,7 @@ export default class editSala extends Component {
                         type="number"
                         name="metragem"
                         id="metragem"
-                        value={this.state.Sala.metragem}
+                        value={this.state.editSala.metragem}
                         onChange={this.updateState}
                         required
                       />
@@ -132,7 +136,7 @@ export default class editSala extends Component {
                   </fieldset>
                   <input
                     type="submit"
-                    defaultValue="Cadastrar"
+                    defaultValue="Editar"
                     className="btn-login"
                   />
                 </form>

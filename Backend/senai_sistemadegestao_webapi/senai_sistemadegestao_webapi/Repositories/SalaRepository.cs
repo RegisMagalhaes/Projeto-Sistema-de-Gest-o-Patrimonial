@@ -38,6 +38,9 @@ namespace senai_sistemadegestao_webapi.Repositories
             {
                 salaBuscada.Andar = salaAtualizada.Andar;
             }
+       
+            ctx.SaveChanges();
+            
         }
 
         /// <summary>
