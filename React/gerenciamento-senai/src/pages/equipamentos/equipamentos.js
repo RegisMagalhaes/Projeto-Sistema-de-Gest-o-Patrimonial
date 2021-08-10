@@ -3,6 +3,11 @@ import "../equipamentos/equipamentos.css";
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
 import swal from 'sweetalert';
+import {
+  BrowserRouter as 
+  Link
+} from "react-router-dom";
+
 
 export default class Equipamentos extends Component {
   constructor(props) {
@@ -124,8 +129,8 @@ export default class Equipamentos extends Component {
                         </div>
                         
                         <div className="botoes">
-                        <a className="btn-edit">Editar</a>
-                        <a className="btn-del" onClick={() => this.deletarEquipamento(equipamento)}>Deletar</a>
+                        <a className="btn-edit" href={'/equipamentos/editEquipamento/' + equipamento.idEquipamento}>Editar</a>
+                        <a className="btn-del" onClick={() => this.deletarSala(equipamento)}>Deletar</a>
                         </div>
               
                       </div>

@@ -20,25 +20,21 @@ export default class Login extends Component {
 
     funcaoLogin = (event) => {
         event.preventDefault();
-
         this.setState({ isLoading: true })
 
-        api.post("/login", {
+        api.post('/LoginView', {
             email: this.state.user.email,
             senha: this.state.user.senha
         })
             .then(resposta => {
                 if (resposta.status === 200) {
                     this.setState({ isLoading: false })
-
                     localStorage.setItem("jwt", resposta.data.token)
 
-                    console.log(this.props.history)
                     if(parseJwt().role === "1"){
-                        this.props.history.push('/equipamento')
+                        this.props.history.push('/salas')
                     }
                     else{
-                        alert("Usuário ou senha Incorretos. Tente novamente")
                         swal("Ocorreu um erro!", "Usuário ou senha incorretos. Tente novamente", "error")
                         this.props.history.push('/')
                     }
@@ -80,7 +76,7 @@ export default class Login extends Component {
 
               <div className="form-inputs">
                 <label htmlFor>SENHA</label>
-                <input type="password" name="password" Value={this.state.user.senha} onChange={this.updateState} className="form-input" required/>
+                <input type="password" name="senha" Value={this.state.user.senha} onChange={this.updateState} className="form-input" required/>
               </div>
               <input
                 type="submit"

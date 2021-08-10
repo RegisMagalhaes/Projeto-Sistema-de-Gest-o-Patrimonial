@@ -20,7 +20,7 @@ export default class CadEquipamento extends Component {
     };
   }
 
-  cadastrarEquipamento = (event) => {
+  editarEquipamento = (event) => {
     event.preventDefault();
     let equipamento = {
       Descricao: this.state.Equipamento.Descricao,
@@ -32,7 +32,7 @@ export default class CadEquipamento extends Component {
       idSala: this.state.Equipamento.idSala
     };
 
-    api.post("/Equipamento", equipamento)
+    api.put("/Equipamento", equipamento)
 
     .then((resposta) => {
       if (resposta.status === 201) {
@@ -55,7 +55,7 @@ export default class CadEquipamento extends Component {
   };
 
   componentDidMount(){
-    document.title = "Cadastrar Equipamento"
+    document.title = "Editar Equipamento"
   }
 
 
@@ -79,7 +79,7 @@ export default class CadEquipamento extends Component {
                   <i className="bx bxs-microchip"></i> Equipamentos
                 </button>
                 <div className="dropdown-content">
-                  <a href="/CadEquipamento">Cadastrar Equipamento</a>
+                  <a href="/CadEquipamentos">Cadastrar Equipamento</a>
                   <a href="/equipamentos">Todos os equipamentos</a>
                 </div>
               </div>
@@ -96,11 +96,11 @@ export default class CadEquipamento extends Component {
 
             <main>
               <div ClassName="container-text">
-                <h1>Cadastrar novo Equipamento</h1>
+                <h1>Editar Equipamento</h1>
               </div>
 
               <section className="main-form">
-                <form onSubmit={this.cadastrarEquipamento}>
+                <form onSubmit={this.editarEquipamento}>
                   <fieldset>
                     <div className="container-form">
                       <label htmlFor="nomeEquipamento">
@@ -184,7 +184,7 @@ export default class CadEquipamento extends Component {
 
                   <input
                     type="submit"
-                    defaultValue="Cadastrar"
+                    defaultValue="Editar"
                     className="btn-login"
                   />
                 </form>

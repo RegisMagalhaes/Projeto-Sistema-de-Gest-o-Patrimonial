@@ -20,7 +20,7 @@ namespace senai_sistemadegestao_webapi.Controller
     /// 
 
     //Define que o formato de resposta da api será no tipo json
-    [Produces("aplication/json")]
+    [Produces("application/json")]
     //Define que a rota da requisição será no formato dominio/api/nomeController
     [Route("api/[controller]")]
     //Define que é um controlador de api

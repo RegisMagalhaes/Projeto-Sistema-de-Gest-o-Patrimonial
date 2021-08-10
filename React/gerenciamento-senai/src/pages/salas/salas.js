@@ -1,7 +1,16 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as 
+  Link
+} from "react-router-dom";
+
 import api from "../../services/api";
 import logo from "../../assets/img/logo-azul.png";
 import swal from 'sweetalert';
+
+
+
+
 
 export default class Salas extends Component {
   constructor(props) {
@@ -15,6 +24,8 @@ export default class Salas extends Component {
       },
     };
   }
+
+  
 
   buscarSalas = () => {
     api.get("/Sala")
@@ -35,8 +46,10 @@ export default class Salas extends Component {
         if (resposta.status === 204) {
           swal("Sucesso!", "A Sala foi deletada com Sucesso!", "success");
         }
+
     })
-    .catch((erro) => swal("Ocorreu um erro :(", `${erro}`, "error"))
+    .catch((erro) => 
+    swal("Ocorreu um erro :(", `Você não pode deletar uma sala que tenha equipamentos`, "error"))
     .then(this.buscarSalas)
 }
 
@@ -105,13 +118,13 @@ export default class Salas extends Component {
                       </summary>
                       <div className="content">
                         <div className="paragrafos">
+                        <p>Número da Sala: {Salas.idSala}</p>
                         <p>Sala: {Salas.nome}</p>
                         <p>Andar: {Salas.andar}</p>
                         <p>Tamanho: {Salas.metragem}m²</p>
-                        <p>Equipamentos: {Salas.IdEquipamentoNavigation}</p>
                         </div>
                         <div className="botoes">
-                        <a className="btn-edit">Editar</a>
+                        <a className="btn-edit" href={'/salas/editSala/' + Salas.idSala}>Editar</a>
                         <a className="btn-del" onClick={() => this.deletarSala(Salas)}>Deletar</a>
                         </div>
                       </div>
@@ -119,6 +132,7 @@ export default class Salas extends Component {
                   );
                 })}
               </section>
+
             </main>
           </div>
         </body>
